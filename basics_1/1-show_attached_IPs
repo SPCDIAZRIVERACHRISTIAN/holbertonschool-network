@@ -1,4 +1,6 @@
-#!/bin/bash
-# Display all active IPv4 addresses
+#!/usr/bin/env bash
+# This script displays all active IPv4 IPs on the machine
 
-ip -4 addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | sort -u
+# Use the ip command to list all network interfaces and their IP addresses
+# Filter out only the active IPv4 addresses and display them
+ip -4 addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | while read -r ip; do echo "$ip\$"; done
